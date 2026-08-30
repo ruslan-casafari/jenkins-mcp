@@ -25,11 +25,12 @@ Installing from git makes npm fetch the devDependencies and compile TypeScript
 (`prepare` → `tsc`), so the first run takes a few seconds; later runs come from
 the npx cache.
 
+The compiled `dist/` is committed as well, so the package also works when it is
+installed with scripts disabled — which is what most MCP clients do, and then
+`prepare` never runs.
+
 > After pushing new commits npx may still serve a cached version.
 > Refresh with `npx --ignore-existing github:ruslan-casafari/jenkins-mcp`.
->
-> If your npm config sets `ignore-scripts=true`, the build will not run on
-> install — use a local clone in that case.
 
 From a local clone:
 
@@ -247,3 +248,7 @@ npm run build
 ```
 
 Node.js 20+.
+
+`dist/` is checked in, because MCP clients install this package with scripts
+disabled and would otherwise get no compiled output. Run `npm run build` and
+commit the result together with any change under `src/`.
