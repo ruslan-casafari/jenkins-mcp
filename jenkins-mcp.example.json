@@ -1,0 +1,30 @@
+{
+  "url": "https://jenkins.example.com",
+  "user": "your-jenkins-login",
+
+  "projects": {
+    "web": {
+      "description": "Main website",
+      "environments": {
+        "dev": "platform/web/deploy-dev",
+        "staging": "platform/web/deploy-staging",
+        "prod": "platform/web/deploy-prod"
+      }
+    },
+
+    "api": {
+      "dev": "platform/api/deploy-dev",
+      "prod": "platform/api/deploy-prod"
+    },
+
+    "mobile": "platform/mobile/build",
+
+    "pycore": {
+      "description": "Backend core, multibranch with a per-pull-request environment",
+      "multibranch": "pycore",
+      "environments": {
+        "main": "pycore/main"
+      }
+    }
+  }
+}
